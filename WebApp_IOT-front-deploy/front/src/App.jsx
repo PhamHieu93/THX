@@ -8,6 +8,7 @@ import Login from "./pages/Login.jsx";
 import Bhx from "./pages/Bhx.jsx";
 import Product from "./pages/Product.jsx";
 import Giohang from "./pages/Giohang.jsx";
+import layout from "./pages/layout.jsx"; 
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path="/history" element={<History />} />
               <Route path="/login" element={<Login />} />
               <Route path="/Giohang" element={<Giohang />} />
+              <Route path="/layout" element={<Layout />} />
 
           </Routes>
       </Router>

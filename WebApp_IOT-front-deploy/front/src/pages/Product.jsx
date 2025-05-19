@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Layout from './layout';
 import "./Product.scss";
 
 const THX_page = () => {
@@ -8,10 +9,10 @@ const THX_page = () => {
   const productDetail = {
     name: "Chân giò heo C.P",
     price: 31500,
-    unit: "kg",
+    unit: "1kg",
     discount: true,
     originalPrice: 37000,
-    image: "/images/chan_gio_heo.jpg", // Use absolute path and consistent folder    description: "Thịt heo tươi ngon, đảm bảo vệ sinh an toàn thực phẩm",
+    image: "/images/changioheo.jpg", // Use absolute path and consistent folder    description: "Thịt heo tươi ngon, đảm bảo vệ sinh an toàn thực phẩm",
     origin: "Việt Nam",
     storage: "Tủ lạnh ở nhiệt độ 0-4 độ C",
     shelfLife: "3 ngày kể từ ngày sản xuất"
@@ -34,7 +35,7 @@ const THX_page = () => {
 
   // Additional products shown at bottom of image
   const moreProducts = [
-    { id: 1, name: "Chân giò heo nhập khẩu Đức", price: 31500, originalPrice: 37000, unit: "1kg", image: "/images/chan_gio_heo.jpg" },
+    { id: 1, name: "Chân giò heo nhập khẩu Đức", price: 31500, originalPrice: 37000, unit: "1kg", image: "/images/changioheo.jpg" },
     { id: 2, name: "Củ cải trắng", price: 6250, originalPrice: 7500, unit: "500g", image: "/images/cucaitrang.jpg" },
     { id: 3, name: "Thịt heo xay C.P", price: 34500, originalPrice: 38000, unit: "300g", image: "/images/thitxay.jpg" },
     { id: 4, name: "Hành tây", price: 39000, originalPrice: 42000, unit: "2kg", image: "/images/hanhtay.jpg" },
@@ -46,6 +47,7 @@ const THX_page = () => {
   };
 
   return (
+    <Layout> 
     <div className="app">
       {/* Header */}
 
@@ -179,45 +181,9 @@ const THX_page = () => {
             ))}
           </div>
         </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer__columns">
-          <div className="footer__column">
-            <h4>Tạp Hóa Xanh</h4>
-            <p>Sứ mệnh mang đến sự tươi ngon cho mọi gia đình</p>
-            <div className="social-icons">
-              {/* Social icons */}
-            </div>
-          </div>
-          <div className="footer__column">
-            <h4>Thông tin</h4>
-            <ul>
-              <li>Giới thiệu</li>
-              <li>Chính sách sử dụng</li>
-              <li>Chính sách bảo mật</li>
-              <li>Tin tức</li>
-            </ul>
-          </div>
-          <div className="footer__column">
-            <h4>Hỗ trợ khách hàng</h4>
-            <ul>
-              <li>Hướng dẫn</li>
-              <li>Chính sách đổi trả</li>
-              <li>Chính sách thanh toán</li>
-            </ul>
-          </div>
-          <div className="footer__column">
-            <h4>Liên hệ</h4>
-            <p>123 Đường ABC, Quận XYZ, TP. HCM</p>
-            <p>1900 1234</p>
-            <p>support@taphoaxanh.com</p>
-          </div>
-        </div>
-        <div className="footer__bottom">© 2025 Tạp Hóa Xanh. Tất cả quyền được bảo lưu.</div>
-      </footer>
+      </main>      
     </div>
+    </Layout> 
   );
 }
 
