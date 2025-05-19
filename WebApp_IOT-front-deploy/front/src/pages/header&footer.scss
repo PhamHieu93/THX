@@ -1,0 +1,281 @@
+// Header styling
+.header {
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3D6BC5; // Darker blue color from image
+    color: white;
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    .left-group {
+      display: flex;
+      gap: 20px; // Space between the two left elements
+    }
+    span {
+      color: rgb(237, 237, 237);
+      font-weight: bold;
+    }
+  }
+  
+  &__login {
+    background-color: #4CAF50; // Dark green color for button
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    
+    &::after {
+      content: "▼";
+      margin-left: 5px;
+      font-size: 0.7rem;
+    }
+    
+    &:hover {
+      background-color: #4CAF50;
+    }
+  }
+
+  &__main {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #3D6BC5; // Blue header matching the screenshot
+    color: white;
+  }
+  
+  &__logo {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  &__search {
+    margin: 0 20px;
+    flex-grow: 1;
+    display: flex;
+    
+    input {
+      flex-grow: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 4px 0 0 4px;
+    }
+    
+    button {
+      background-color: #4CAF50; // Green button
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
+  }
+  
+  &__nav {
+    display: flex;
+    gap: 15px;
+    
+    a {
+      color: white;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  &__menu {
+    display: flex;
+    list-style: none;
+    position: relative;
+
+    padding: 0;
+    margin: 0;
+    background-color: #007EDE; // Darker blue for the menu
+    .menu-item {
+      position: relative;
+      color: #000000;
+
+      &:hover .dropdown-menu {
+        display: block;
+        color: #000000;
+
+      }
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: rgb(255, 255, 255);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      min-width: 200px;
+      z-index: 100;
+      padding: 10px 0;
+      color: #000000;
+      a {
+        color: #222020; /* Set text color to black */
+        text-decoration: none; /* Optional: removes underline from links */
+      }
+      
+      li {
+        padding: 8px 16px;
+        color: #000000;
+        &:hover {
+          background-color: #f5f5f5;
+        }
+      }
+    }
+
+    li {
+      padding: 10px 15px;
+      font-weight: bold;
+      a {
+        color: white;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// Footer
+.footer {
+  position: relative;
+  width: 100%;
+  background-color: #2385d1; // Matching blue from the image
+  color: white;
+  padding: 30px 15px;
+  margin-top: 40px;
+  
+  &__columns {
+    background-color: #2385d1; // Matching blue from the image
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #ffffff;
+    height: auto;
+  }
+  
+  &__column {
+    h4 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #ffffff;
+      text-align: left;
+      margin-left: 0px;
+      padding-left: 15px;
+      padding-top: 10px;
+    }
+    
+    p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-bottom: 10px;
+      color: #ffffff !important; // Using !important to ensure it overrides any other styles
+      text-align: left;
+      margin-left: 15px;
+    }
+    i {
+        margin-top: 3px;
+        color: #ffffff;
+
+      }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: #ffffff;
+      text-align: left;
+      
+      li {
+        margin-bottom: 8px;
+        margin-left: 10px;
+        
+        a {
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
+          
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+    margin-left: 15px; 
+    
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+  
+  .contact-info {
+    color: #ffffff;
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+      
+      i {
+        margin-top: 3px;
+        color: #ffffff;
+      }
+      
+      span {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        color: #ffffff;
+      }
+    }
+  }
+  
+  &__bottom {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.8rem;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 1200px;
+    margin: 30px auto 0;
+  }
+}
+// Add this to reduce the white gap above and below the feedback bar
+.section--promos {
+  margin-top: 10px; // Reduce bottom margin
+}

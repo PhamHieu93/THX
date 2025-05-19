@@ -39,7 +39,7 @@
     
     .search-input {
       flex: 1;
-      padding: 8px 12px;
+      padding: 8px 10px;
       border: 1px solid #ccc;
       border-radius: 4px 0 0 4px;
       outline: none;
@@ -51,12 +51,13 @@
       color: white;
       border: none;
       border-radius: 0 4px 4px 0;
-      padding: 8px 12px;
+      padding: 4px 8px;
       cursor: pointer;
     }
   }
 }
 
+//Thanh toan
 .cart-container {
   display: flex;
   gap: 20px;
@@ -75,7 +76,7 @@
     background-color: white;
     border: 1px solid #e0e0e0;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 15px;
     color: #333;
     text-align: center;
   }
@@ -185,7 +186,7 @@
       .item-name {
         font-weight: 500;
         margin-bottom: 5px;
-        margin-left: 15%;
+        margin-left: 10px;
         text-align: left;
       }
       
@@ -196,13 +197,13 @@
         .item-price {
           color: #e01d1a;
           font-weight: bold;
-          margin-left: 40px;
+          margin-left: 10px;
         }
         
         .item-original-price {
           color: #999;
           text-decoration: line-through;
-          margin-left: 10px;
+          margin-left: 5px;
           font-size: 14px;
         }
         
@@ -310,11 +311,13 @@
         .item-name {
           font-size: 14px;
           margin-bottom: 5px;
+          text-align: left;
         }
         
         .item-quantity {
           font-size: 14px;
           color: #666;
+          text-align: left;
         }
       }
       
@@ -357,7 +360,7 @@
   flex: 1;
   background-color: hsl(211, 100%, 50%);
   border-radius: 8px;
-  padding: 20px;
+  padding: 30px;
   
   .payment-title {
     text-align: center;
@@ -373,6 +376,7 @@
       align-items: center;
       margin-bottom: 20px;
       text-align: left;
+      color: white;
       
       .item-image {
         width: 50px;
@@ -401,12 +405,12 @@
         
         .item-price {
           font-size: 12px;
-          color: #666;
+          color: #424242;
         }
       }
       
       .item-quantity {
-        color: #666;
+        color: #424242;
         margin-right: 10px;
       }
       
@@ -417,31 +421,67 @@
   }
   
   .summary-totals {
-    margin-top: 20px;
-    
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      color: #f5f5f5;
-      
-      &:last-child {
-        margin-bottom: 0;
-      }
-      
-      .total-amount {
-        font-weight: bold;
-        color: #e53935;
-        font-size: 18px;
-      }
-    }
-    
-    .bonus-points {
-      font-style: italic;
-      color: #ffffff;
-      font-size: 14px;
+  background: hsl(211, 100%, 50%);
+  color: #fff;
+  border-radius: 0;
+  padding: 20px 12px 10px 12px;
+  font-size: 0.98rem;
+  width: 106%;
+  box-sizing: border-box;
+  margin-left: -10px;
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+    font-size: 0.98rem;
+    color: #fff;
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
+
+  .voucher-amount {
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  .total-amount {
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 1.18rem;
+    letter-spacing: 1px;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid #fff;
+    margin: 8px 0;
+  }
+
+  // "Đã bao gồm thuế" row
+  .summary-row:last-child {
+    justify-content: flex-end;
+    font-size: 0.95rem;
+    color: #fff;
+
+    span:first-child {
+      flex: none;
+      font-size: 0.85rem;
+      color: #fff;
+      font-weight: normal;
+      margin-right: 0;
+      font-style: italic;
+    }
+    .vat {
+      color: #fff;
+      font-size: 0.80rem;
+    }
+  }
+}
   
   .checkout-button {
     display: block;
@@ -462,57 +502,132 @@
   }
 }
 
+// Footer
 .footer {
-  margin-top: 50px;
-  background-color: #f5f5f5;
-  padding: 30px 0;
+  position: relative;
+  width: 100%;
+  background-color: #2385d1; // Matching blue from the image
+  color: white;
+  padding: 30px 15px;
+  margin-top: 40px;
   
-  .footer__columns {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+  &__columns {
+    background-color: #2385d1; // Matching blue from the image
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #ffffff;
+    height: auto;
+  }
+  
+  &__column {
+    h4 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #ffffff;
+      text-align: left;
+      margin-left: 0px;
+      padding-left: 15px;
+      padding-top: 10px;
+    }
     
-    .footer__column {
-      flex: 1;
-      margin-right: 20px;
-      
-      &:last-child {
-        margin-right: 0;
+    p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-bottom: 10px;
+      color: #ffffff !important; // Using !important to ensure it overrides any other styles
+      text-align: left;
+      margin-left: 15px;
+    }
+    i {
+        margin-top: 3px;
+        color: #ffffff;
+
       }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: #ffffff;
+      text-align: left;
       
-      h4 {
-        margin-bottom: 15px;
-        font-size: 16px;
-      }
-      
-      p {
-        color: #666;
-        line-height: 1.5;
-      }
-      
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+      li {
+        margin-bottom: 8px;
+        margin-left: 10px;
         
-        li {
-          margin-bottom: 10px;
-          color: #666;
-          cursor: pointer;
+        a {
+          color: white;
+          text-decoration: none;
+          font-size: 0.9rem;
           
           &:hover {
-            color: #0099cc;
+            text-decoration: underline;
           }
         }
       }
     }
   }
   
-  .footer__bottom {
-    text-align: center;
-    padding-top: 15px;
-    border-top: 1px solid #ddd;
-    color: #666;
-    font-size: 14px;
+  .social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+    margin-left: 15px; 
+    
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+    }
   }
+  
+  .contact-info {
+    color: #ffffff;
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+      
+      i {
+        margin-top: 3px;
+        color: #ffffff;
+      }
+      
+      span {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        color: #ffffff;
+      }
+    }
+  }
+  
+  &__bottom {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.8rem;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 1200px;
+    margin: 30px auto 0;
+  }
+}
+// Add this to reduce the white gap above and below the feedback bar
+.section--promos {
+  margin-top: 10px; // Reduce bottom margin
 }

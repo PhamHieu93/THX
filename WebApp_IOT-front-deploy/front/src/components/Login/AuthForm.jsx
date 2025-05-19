@@ -48,24 +48,19 @@ const AuthForm = ({ isSignUp, setIsSignUp }) => {
                     <a href="#" className="icon">
                         <FontAwesomeIcon icon={faFacebookF} />
                     </a>
-                    <a href="#" className="icon">
-                        <FontAwesomeIcon icon={faGithub} />
-                    </a>
-                    <a href="#" className="icon">
-                        <FontAwesomeIcon icon={faLinkedinIn} />
-                    </a>
+                   
                 </div>
-                <span>{isSignUp ? 'or use your email for registration' : 'or use your email'}</span>
-                {isSignUp && <input type="text" placeholder="Name" required />}
+                <span>{isSignUp ? 'hoặc sử dụng email để đăng ký' : 'hoặc sử dụng email'}</span>
+                {isSignUp && <input type="text" placeholder="Tên" required />}
                 <input type="email" placeholder="Email" required ref={emailInputRef} />
-                <input type="password" placeholder="Password" required />
+                <input type="password" placeholder="Mật khẩu" required />
                 {!isSignUp && (
                     <a href="#" className="forgot-password">
                         Quên mật khẩu ?
                     </a>
                 )}
                 <button type="button" onClick={handleSubmit}>
-                    {isSignUp ? 'Sign Up' : 'Sign In'}
+                    {isSignUp ? 'Đăng ký' : 'Đăng nhập'}
                 </button>
             </form>
         </div>

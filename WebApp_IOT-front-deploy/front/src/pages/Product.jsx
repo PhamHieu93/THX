@@ -29,7 +29,7 @@ const THX_page = () => {
   const recommendedProducts = [
     { id: 1, name: "Cà rốt", price: 35000, originalPrice: 39000, image: "/images/carot.jpg" },
     { id: 2, name: "Khoai tây", price: 25000, originalPrice: 28000, image: "/images/khoaitay.jpg" },
-    { id: 3, name: "Cà rốt (Hàn)", price: 20000, originalPrice: 22000, image: "/images/cucaitrang.jpg" },
+    { id: 3, name: "Củ cải trắng", price: 20000, originalPrice: 22000, image: "/images/cucaitrang.jpg" },
   ];
 
   // Additional products shown at bottom of image
