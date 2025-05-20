@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
-import Layout from './layout';
 import "./Giohang.scss";
+import HeaderSidebar from './header_sidebar.jsx';
+import FooterSidebar from './footer_sidebar.jsx';
+import ChatBox from './chatbox.jsx'; // Import the ChatBox component
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComment } from '@fortawesome/free-solid-svg-icons';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Giohang = () => {
   // Format price with commas
   const formatPrice = (price) => {
     return new Intl.NumberFormat('vi-VN').format(price);
   };
-  
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  const toggleChat = () => {
+    setIsChatOpen(!isChatOpen);
+  };
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
@@ -72,7 +81,23 @@ const Giohang = () => {
   ]);
 
   const [sortOption, setSortOption] = useState('default');
-  
+  // Modal state for ĐẶT HÀNG
+  const [showModal, setShowModal] = useState(false);
+  const [deliveryType, setDeliveryType] = useState('delivery'); // 'pickup' or 'delivery'
+
+  // --- Add these states and handlers for popups ---
+  const [showMap, setShowMap] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [selectedDateTime, setSelectedDateTime] = useState('');
+
+  const handleShowMap = () => setShowMap(true);
+  const handleCloseMap = () => setShowMap(false);
+
+  const handleShowCalendar = () => setShowCalendar(true);
+  const handleCloseCalendar = () => setShowCalendar(false);
+
+  const handleDateTimeChange = (e) => setSelectedDateTime(e.target.value);
+  // ------------------------------------------------
   // Calculate totals
   const calculateSubtotal = () => {
     return cartItems
@@ -106,7 +131,7 @@ const Giohang = () => {
   };
 
   return (
-    <Layout>
+    <HeaderSidebar>
     <div className="cart-page">
       {/* Header */}
       <header className="cart-header">
@@ -298,11 +323,110 @@ const Giohang = () => {
   </div>
 </div>
           
-          <button className="checkout-button">ĐẶT HÀNG</button>
-        </div>
+          <button
+            className="checkout-button"
+            onClick={() => setShowModal(true)}
+          >
+            ĐẶT HÀNG
+          </button> 
+         </div>
       </div>
+      {/* Modal for ĐẶT HÀNG */}
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <div className="modal-header">
+              <button
+                className={`modal-tab ${deliveryType === 'pickup' ? 'active' : ''}`}
+                onClick={() => setDeliveryType('pickup')}
+              >
+                <span role="img" aria-label="pickup" style={{ fontSize: 28, marginRight: 8 }}>🛒</span>
+                Pickup
+              </button>
+              <button
+                className={`modal-tab ${deliveryType === 'delivery' ? 'active' : ''}`}
+                onClick={() => setDeliveryType('delivery')}
+              >
+                <span role="img" aria-label="delivery" style={{ fontSize: 28, marginRight: 8 }}>📦</span>
+                Delivery
+              </button>
+            </div>
+            <div className="modal-content">
+              {deliveryType === 'delivery' ? (
+                <div className="delivery-content">
+                  <button className="modal-btn" onClick={handleShowMap}>Thêm địa chỉ</button>
+                  <button className="modal-btn" onClick={handleShowMap}>Dùng địa chỉ hiện tại</button>
+                </div>
+              ) : (
+                <div className="pickup-content">
+                  <button className="modal-btn" onClick={handleShowMap}>Cửa hàng gần nhất</button>
+                  <button className="modal-btn" onClick={handleShowCalendar}>Thời gian lấy</button>
+                </div>
+              )}
+            </div>
+            <button className="modal-close" onClick={() => setShowModal(false)}>Đóng</button>
+          </div>
+        </div>
+      )}
+
+      {/* Google Map Popup */}
+      {showMap && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <div className="popup-header">
+              <span>Chọn vị trí trên bản đồ</span>
+              <button className="popup-close" onClick={handleCloseMap}>×</button>
+            </div>
+            <iframe
+              title="Google Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.502222222222!2d106.70000000000002!3d10.77688888888889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ2JzM2LjgiTiAxMDbCsDQyJzAwLjAiRQ!5e0!3m2!1svi!2s!4v1680000000000!5m2!1svi!2s"
+              width="400"
+              height="300"
+              style={{ border: 0, borderRadius: 8, width: "100%" }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      )}
+
+      {/* Calendar Popup */}
+      {showCalendar && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <div className="popup-header">
+              <span>Chọn ngày và giờ lấy hàng</span>
+              <button className="popup-close" onClick={handleCloseCalendar}>×</button>
+            </div>
+            <input
+              type="datetime-local"
+              value={selectedDateTime}
+              onChange={handleDateTimeChange}
+              className="calendar-input"
+              style={{ margin: "24px 0", fontSize: 18, padding: 8, borderRadius: 8, border: "1px solid #ccc" }}
+            />
+            <button
+              className="modal-btn"
+              onClick={handleCloseCalendar}
+              style={{ marginTop: 8 }}
+            >
+              Xác nhận
+            </button>
+          </div>
+        </div>
+      )}
+
+      <div className="chat-button" onClick={toggleChat}>
+                <FontAwesomeIcon icon={faComment} />
+            </div>
+              
+              {isChatOpen && <ChatBox onClose={() => setIsChatOpen(false)} />}
+          
+      {/* Footer */}
+      <FooterSidebar />
     </div>
-    </Layout>
+    </HeaderSidebar>
   );
 }
 

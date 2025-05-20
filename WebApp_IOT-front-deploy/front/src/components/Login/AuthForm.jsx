@@ -31,7 +31,7 @@ const AuthForm = ({ isSignUp, setIsSignUp }) => {
         }
 
         if (!isSignUp) {
-            navigate('/dashboard');
+            navigate('/');
         } else {
             setIsSignUp(false);
         }

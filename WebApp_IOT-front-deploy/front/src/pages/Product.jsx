@@ -1,10 +1,28 @@
 import React, { useState } from 'react';
-import Layout from './layout';
 import "./Product.scss";
+import HeaderSidebar from './header_sidebar.jsx';
+import FooterSidebar from './footer_sidebar.jsx';
+import ChatBox from './chatbox.jsx'; // Import the ChatBox component
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComment } from '@fortawesome/free-solid-svg-icons';
+import 'react-toastify/dist/ReactToastify.css';
 
 const THX_page = () => {
   const [deliveryMethod, setDeliveryMethod] = useState('pickup');
+  // --- CAPTCHA STATES ---
+  const [showCaptcha, setShowCaptcha] = useState(false);
+  const [captchaInput, setCaptchaInput] = useState('');
+  const [captchaError, setCaptchaError] = useState('');
+  const [captchaQuestion, setCaptchaQuestion] = useState('');
+  const [captchaAnswer, setCaptchaAnswer] = useState(null);
+
+  // Chatbox state
+    const [isChatOpen, setIsChatOpen] = useState(false);
   
+    const toggleChat = () => {
+      setIsChatOpen(!isChatOpen);
+    };
+
   // Sample product data to match the image
   const productDetail = {
     name: "Chân giò heo C.P",
@@ -45,9 +63,33 @@ const THX_page = () => {
   const formatPrice = (price) => {
     return new Intl.NumberFormat('vi-VN').format(price);
   };
+// --- CAPTCHA LOGIC ---
+  const generateCaptcha = () => {
+    const a = Math.floor(Math.random() * 10) + 1;
+    const b = Math.floor(Math.random() * 10) + 1;
+    setCaptchaQuestion(`What is ${a} + ${b}?`);
+    setCaptchaAnswer(a + b);
+    setCaptchaInput('');
+    setCaptchaError('');
+  };
 
+  const handleBuyClick = () => {
+    generateCaptcha();
+    setShowCaptcha(true);
+  };
+
+  const handleCaptchaSubmit = (e) => {
+    e.preventDefault();
+    if (parseInt(captchaInput, 10) === captchaAnswer) {
+      setShowCaptcha(false);
+      alert('CAPTCHA passed! Tiếp tục mua hàng...');
+      // Place your buy logic here
+    } else {
+      setCaptchaError('Sai đáp án, vui lòng thử lại!');
+    }
+  };
   return (
-    <Layout> 
+    <HeaderSidebar>
     <div className="app">
       {/* Header */}
 
@@ -97,7 +139,7 @@ const THX_page = () => {
               <button className="flash-sale-button">FLASH SALE</button>
               
               {/* Buy button */}
-              <button className="buy-button">MUA</button>
+              <button className="buy-button" onClick={handleBuyClick}>MUA</button>
 
               {/* Delivery options */}
               <div className="delivery-options">
@@ -181,9 +223,43 @@ const THX_page = () => {
             ))}
           </div>
         </section>
-      </main>      
+      </main>
+      {/* CAPTCHA Modal */}
+      {showCaptcha && (
+        <div className="captcha-modal">
+          <div className="captcha-modal__content">
+            <h3>Xác minh bạn không phải robot</h3>
+            <form onSubmit={handleCaptchaSubmit}>
+              <label>
+                {captchaQuestion}
+                <input
+                  type="text"
+                  value={captchaInput}
+                  onChange={e => setCaptchaInput(e.target.value)}
+                  autoFocus
+                  style={{ marginLeft: 8 }}
+                />
+              </label>
+              {captchaError && <div className="captcha-error">{captchaError}</div>}
+              <div style={{marginTop: 12}}>
+                <button type="submit">Xác nhận</button>
+                <button type="button" onClick={() => setShowCaptcha(false)} style={{marginLeft: 8}}>Hủy</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )} 
+
+      <div className="chat-button" onClick={toggleChat}>
+          <FontAwesomeIcon icon={faComment} />
+      </div>
+        
+        {isChatOpen && <ChatBox onClose={() => setIsChatOpen(false)} />}
+    
+      {/* Footer */}
+      <FooterSidebar />     
     </div>
-    </Layout> 
+    </HeaderSidebar>
   );
 }
 
