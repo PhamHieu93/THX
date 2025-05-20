@@ -7,8 +7,7 @@ import "./Bhx.scss";
 const THX_page = () => {
   return ( 
     <Layout> 
-    <div className="app">
- 
+    <div className="app"> 
 
       {/* Hero Carousel */}
 <section className="hero">
